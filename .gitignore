@@ -1,0 +1,9 @@
+# Ignore the algs4-data folder
+algs4-data/
+
+# Ignore the algs4.jar file
+algs4.jar
+
+*.class
+.DS_Store
+.json
