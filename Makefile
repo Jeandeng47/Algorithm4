@@ -1,8 +1,9 @@
 # Variables
 JAR = algs4.jar
-SRC_DIR = Chapter_4-1
-CLASS = _TestSearch
+SRC_DIR = Chapter_1-1
+CLASS = P_1_1_10
 DATA_DIR = algs4-data
+INPUT_FILE = $(DATA_DIR)/$(DEFAULT_INPUT)
 DEFAULT_INPUT = tinyG.txt
 
 # Targets
@@ -12,7 +13,11 @@ compile:
 	javac -cp .:$(JAR) $(SRC_DIR)/$(CLASS).java
 
 run:
-	java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(if $(INPUT),$(INPUT),$(DATA_DIR)/$(DEFAULT_INPUT)) 0
+	@if [ -n "$(INPUT)" ]; then \
+		java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(INPUT); \
+	else \
+		java -cp .:$(JAR):$(SRC_DIR) $(CLASS); \
+	fi
 
 clean:
 	rm -f $(SRC_DIR)/*.class
