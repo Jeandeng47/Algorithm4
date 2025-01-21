@@ -1,4 +1,4 @@
-import Util.ArrayUtil;
+import Util.ArrayPrint;
 
 public class P_1_1_10 {
     public static void main(String[] args) {
@@ -7,7 +7,7 @@ public class P_1_1_10 {
         for (int i = 0; i < 10; i++) {
             a[i] = i * i;
         }
-        ArrayUtil.printArray(a);
+        ArrayPrint.printArray(a);
     }
     
 }

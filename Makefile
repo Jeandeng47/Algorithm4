@@ -1,7 +1,7 @@
 # Variables
 JAR = algs4.jar
 SRC_DIR = Chapter_1-1
-CLASS = P_1_1_10
+CLASS = P_1_1_18
 DATA_DIR = algs4-data
 INPUT_FILE = $(DATA_DIR)/$(DEFAULT_INPUT)
 DEFAULT_INPUT = tinyG.txt
