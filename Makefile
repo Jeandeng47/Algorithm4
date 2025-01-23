@@ -1,23 +1,20 @@
 # Variables
 JAR = algs4.jar
-SRC_DIR = Chapter_1-1
-CLASS = P_1_1_18
+SRC_DIR = Chapter_4-1
+CLASS = _TestDegreesOfSeperation
 DATA_DIR = algs4-data
-INPUT_FILE = $(DATA_DIR)/$(DEFAULT_INPUT)
 DEFAULT_INPUT = tinyG.txt
+ARGS ?= $(DEFAULT_INPUT) 0
+JAVA_FILES = $(wildcard $(SRC_DIR)/*.java)
 
 # Targets
 all: compile run
 
-compile:
-	javac -cp .:$(JAR) $(SRC_DIR)/$(CLASS).java
+compile: $(JAVA_FILES)
+	javac -cp .:$(JAR) $(JAVA_FILES)
 
 run:
-	@if [ -n "$(INPUT)" ]; then \
-		java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(INPUT); \
-	else \
-		java -cp .:$(JAR):$(SRC_DIR) $(CLASS); \
-	fi
+	java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(DATA_DIR)/$(ARGS)
 
 clean:
 	rm -f $(SRC_DIR)/*.class

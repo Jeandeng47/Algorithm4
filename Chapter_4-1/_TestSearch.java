@@ -1,6 +1,9 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
+// To run this program:
+// % make run ARGS="tinyG.txt 2"
+
 public class _TestSearch {
     public static void main(String[] args) {
         _Graph G = new _Graph(new In(args[0]));

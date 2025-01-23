@@ -1,4 +1,4 @@
-public class _DepthFirstSearch implements _Search {
+public class _DepthFirstSearch {
     private boolean[] marked;
     private int count;
 
@@ -8,6 +8,7 @@ public class _DepthFirstSearch implements _Search {
     }
 
     public void dfs(_Graph G, int s) {
+        // Mark this vertex
         this.marked[s] = true;
         this.count++;
         for (int w : G.adj(s)) {
