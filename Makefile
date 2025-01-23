@@ -1,7 +1,8 @@
 # Variables
+# Modify CLASS name to target class
 JAR = algs4.jar
 SRC_DIR = Chapter_4-1
-CLASS = _TestDegreesOfSeperation
+CLASS = P_4_1_6
 DATA_DIR = algs4-data
 DEFAULT_INPUT = tinyG.txt
 ARGS ?= $(DEFAULT_INPUT) 0
