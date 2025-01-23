@@ -5,7 +5,7 @@ import java.util.Random;
 public class ArrayGenerator {
 
     // Generate a random integer array within a specified range [lo, hi)
-    public static int[] genRandIntArr(int lo, int hi) {
+    public static int[] getRandIntArr(int lo, int hi) {
         if (lo >= hi) {
             throw new IllegalArgumentException("lo must be less than hi");
         }
@@ -32,8 +32,8 @@ public class ArrayGenerator {
     }
 
     // Generate a random integer array within the range [0, hi)
-    public static int[] genRandIntArr(int hi) {
-        return genRandIntArr(0, hi);
+    public static int[] getRandIntArr(int hi) {
+        return getRandIntArr(0, hi);
     }
 
     // Generate an ascending integer array within the range [0, hi)
@@ -42,7 +42,7 @@ public class ArrayGenerator {
     }
 
     // Generate a boolean matrix with random values
-    public static boolean[][] genRandBooleanMatrix(int rows, int cols) {
+    public static boolean[][] getRandBooleanMatrix(int rows, int cols) {
         boolean[][] matrix = new boolean[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -53,7 +53,7 @@ public class ArrayGenerator {
     }
 
     // Generate an integer matrix with random values
-    public static int[][] genRandIntMatrix(int rows, int cols) {
+    public static int[][] getRandIntMatrix(int rows, int cols) {
         Random random = new Random();
 
         int[][] matrix = new int[rows][cols];

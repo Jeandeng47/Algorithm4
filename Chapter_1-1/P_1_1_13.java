@@ -25,7 +25,7 @@ public class P_1_1_13 {
         int cols = 3;
 
         StdOut.println("Original matrix: ");
-        int[][] matrix = ArrayGenerator.genRandIntMatrix(rows, cols);
+        int[][] matrix = ArrayGenerator.getRandIntMatrix(rows, cols);
         ArrayPrint.print2DArray(matrix);
         
         StdOut.println("Transposed matrix:");

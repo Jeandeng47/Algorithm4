@@ -33,7 +33,7 @@ public class P_1_1_11 {
         // Example matrix
         int rows = 10;
         int cols = 10;
-        boolean[][] matrix = ArrayGenerator.genRandBooleanMatrix(rows, cols);
+        boolean[][] matrix = ArrayGenerator.getRandBooleanMatrix(rows, cols);
 
         // Print boolean matrix
         printBooleanMatrix(matrix);

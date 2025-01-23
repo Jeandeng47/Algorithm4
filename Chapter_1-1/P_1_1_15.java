@@ -23,7 +23,7 @@ public class P_1_1_15 {
 
         int M = 10;
 
-        int[] array = ArrayGenerator.genRandIntArr(M);
+        int[] array = ArrayGenerator.getRandIntArr(M);
         ArrayPrint.printArray(array);
         
         int[] result = histogram(array, M);
