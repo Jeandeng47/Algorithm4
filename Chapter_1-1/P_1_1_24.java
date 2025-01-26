@@ -1,5 +1,7 @@
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+
+// To run this program:
+// make run ARGS="105 24"
 
 public class P_1_1_24 {
 
@@ -30,10 +32,19 @@ public class P_1_1_24 {
     
 
     public static void main(String[] args) { 
-        int p = 1111111;
-        int q = 1234567;
-        int gcd = gcd(p, q);
-        System.out.printf("Greatest Common Divisor of %d and %d is: %d%n", p, q, gcd);
+        if (args.length != 2) {
+            System.out.println("Usage: <integer1> <integer2>");
+            return;
+        }
+
+        try {
+            int p = Integer.parseInt(args[0]);
+            int q = Integer.parseInt(args[1]);
+            int gcd = gcd(p, q);
+            System.out.printf("Greatest Common Divisor of %d and %d is: %d%n", p, q, gcd);
+        } catch (NumberFormatException e) {
+            System.out.println("Please provide valid integers.");
+        }
       
     }
 }
