@@ -56,8 +56,8 @@ public class _Graph {
     public void addEdge(int v, int w) {
 
         checkValidVertex(v, w);
-        checkselfLoop(v, w);
-        checkParallelEdge(v, w);
+        // checkselfLoop(v, w);
+        // checkParallelEdge(v, w);
 
         this.adj[v].add(w);
         this.adj[w].add(v);
@@ -71,21 +71,21 @@ public class _Graph {
         }
     }
 
-    private void checkselfLoop(int v, int w) {
-        // P_4_1_5: disallow self-loop
-        if (v == w) {
-            throw new IllegalArgumentException("Self-loops found at vertex " + v);
-        }
-    }
+    // private void checkselfLoop(int v, int w) {
+    //     // P_4_1_5: disallow self-loop
+    //     if (v == w) {
+    //         throw new IllegalArgumentException("Self-loops found at vertex " + v);
+    //     }
+    // }
 
-    private void checkParallelEdge(int v, int w) {
-        // P_4_1_5: disallow parallel edges
-        for (int n : adj[v]) {
-            if (n == w) {
-                throw new IllegalArgumentException("Parallel edge found at vertex " + v  + " and " + w);
-            }
-        }
-    }
+    // private void checkParallelEdge(int v, int w) {
+    //     // P_4_1_5: disallow parallel edges
+    //     for (int n : adj[v]) {
+    //         if (n == w) {
+    //             throw new IllegalArgumentException("Parallel edge found at vertex " + v  + " and " + w);
+    //         }
+    //     }
+    // }
 
     // Return a list of vertices adjacent to v
     public Iterable<Integer> adj(int v) {
