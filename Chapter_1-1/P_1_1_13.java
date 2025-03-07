@@ -26,10 +26,10 @@ public class P_1_1_13 {
 
         StdOut.println("Original matrix: ");
         int[][] matrix = ArrayGenerator.getRandIntMatrix(rows, cols);
-        ArrayPrint.print2DArray(matrix);
+        ArrayPrint.printMatrix(matrix);
         
         StdOut.println("Transposed matrix:");
         int[][] transMatrix = transposeMatrix(matrix);
-        ArrayPrint.print2DArray(transMatrix);
+        ArrayPrint.printMatrix(transMatrix);
     }
 }

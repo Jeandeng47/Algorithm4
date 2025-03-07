@@ -34,7 +34,7 @@ public class ArrayPrint {
         System.out.println();
     }
 
-    public static void print2DArray(int[][] array) {
+    public static void printMatrix(int[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 System.out.printf("%3d", array[i][j]); 

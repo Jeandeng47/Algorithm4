@@ -12,6 +12,10 @@ public class P_1_1_24 {
 
     private static int gcdHelper(int p, int q, int depth) {
 
+        // GCD algorithmn:
+        // If d is a divisor of both a and b (a > b), it must also be a divisor of
+        // a % b (a % b is equivalent to a - kb)
+
         printIndentation(p, q, depth);
         
         if (q == 0) {
