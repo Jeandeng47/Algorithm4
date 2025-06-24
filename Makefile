@@ -1,8 +1,8 @@
 # Variables
 # Modify CLASS name to target class
 JAR = algs4.jar
-SRC_DIR = Chapter_1-1
-CLASS = P_1_1_34
+SRC_DIR = Chapter_1-2
+CLASS = P_1_2_16
 DATA_DIR = algs4-data
 DEFAULT_INPUT = tinyGex2.txt
 ARGS ?= $(DEFAULT_INPUT) 2
@@ -17,7 +17,7 @@ TARGET_CLASS = $(SRC_DIR)/$(CLASS).class
 # java -cp .:$(JAR):$(SRC_DIR) $(CLASS)
 
 # run with arguments:
-# java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(DATA_DIR)/$(ARGS)
+# java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(ARGS)
 
 # run with data file and arguments:
 # java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(DATA_DIR)/$(ARGS)
