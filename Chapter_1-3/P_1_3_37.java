@@ -1,7 +1,7 @@
 // Josephus Problem
 // To run this code, use the command:
 // make ARGS="N M"
-
+ 
 import edu.princeton.cs.algs4.Queue;
 
 public class P_1_3_37 {

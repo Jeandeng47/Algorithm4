@@ -4,17 +4,7 @@ import java.util.NoSuchElementException;
 // Implement a double-ended queue Deque using a resizing array
 public class P_1_3_33_2 {
     public static class ResizingArrayDeque<Item> implements Iterable<Item> {
-        private static class Node<Item> {
-            Item item;
-            Node<Item> prev;
-            Node<Item> next;
-            public Node() {
-                this.item = item;
-                this.prev = prev;
-                this.next = next;
-            }
-        }
-        
+       
         private Item[] a;
         private int size;
         private int left; // index of first element

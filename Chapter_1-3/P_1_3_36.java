@@ -9,6 +9,7 @@ public class P_1_3_36 {
         private int size;
         private Random rand;
 
+        @SuppressWarnings("unchecked")
         public RandomQueue() {
             this.a = (Item[]) new Object[2];
             this.size = 0;

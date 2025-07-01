@@ -71,6 +71,7 @@ public class P_1_3_35 {
             private Item[] shuffled;
             private int i;
 
+            @SuppressWarnings("unchecked")
             public RandomQueueIterator() {
                 shuffled = (Item[]) new Object[size];
                 for (int j = 0; j < size; j++) {

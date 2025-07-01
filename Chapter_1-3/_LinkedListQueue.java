@@ -1,9 +1,9 @@
 import java.util.Iterator;
-import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
-public class _LinkedListStack<Item> implements Iterable<Item> {
-
+public class _LinkedListQueue<Item> implements Iterable<Item> {
     private Node<Item> first;
+    private Node<Item> last;
     private int n;
 
     private class Node<Item> {
@@ -15,33 +15,41 @@ public class _LinkedListStack<Item> implements Iterable<Item> {
         }
     }
 
-    public _LinkedListStack() {
+    public _LinkedListQueue() {
         this.first = null;
+        this.last = null;
         this.n = 0;
     }
 
     public boolean isEmpty() {
         return n == 0;
-    }
+    }   
 
     public int size() {
         return n;
     }
 
-    public void push(Item item) {
-        Node<Item> oldFirst = first;
-        first = new Node<>(item);
-        first.next = oldFirst;
+    public void enqueue(Item item) {
+        Node<Item> oldLast = last;
+        last = new Node<>(item);
+        if (isEmpty()) {
+            first = last;
+        } else {
+            oldLast.next = last;
+        }
         n++;
     }
 
-    public Item pop() {
+    public Item dequeue() {
         if (isEmpty()) {
-            throw new RuntimeException("Stack underflow");
+            throw new NoSuchElementException("Queue underflow");
         }
         Item item = first.item;
         first = first.next;
         n--;
+        if (isEmpty()) {
+            last = null;
+        }
         return item;
     }
 
@@ -61,14 +69,17 @@ public class _LinkedListStack<Item> implements Iterable<Item> {
         @Override
         public Item next() {
             if (!hasNext()) {
-                throw new RuntimeException("No more items in stack");
+                throw new NoSuchElementException("No more items in the queue");
             }
             Item item = current.item;
             current = current.next;
             return item;
         }
 
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("Remove operation is not supported");
+        }
     }
-
     
 }

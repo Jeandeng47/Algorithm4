@@ -5,6 +5,7 @@ public class P_1_3_38 {
         private Item[] items;
         private int size;
 
+        @SuppressWarnings("unchecked")
         public ArrayGQ() {
             this.items = (Item[]) new Object[10];
             this.size = 0;

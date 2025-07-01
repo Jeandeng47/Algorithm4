@@ -47,6 +47,7 @@ public class P_1_3_34 {
             private Item[] shuffled;
             private int i;
 
+            @SuppressWarnings("unchecked")
             public BagIterator() {
                 shuffled = (Item[]) new Object[size];
                 for (int j = 0; j < size; j++) {
