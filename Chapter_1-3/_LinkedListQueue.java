@@ -75,11 +75,6 @@ public class _LinkedListQueue<Item> implements Iterable<Item> {
             current = current.next;
             return item;
         }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException("Remove operation is not supported");
-        }
     }
     
 }

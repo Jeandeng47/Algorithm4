@@ -67,20 +67,20 @@ public class P_1_1_27 {
     public static void main(String[] args) {
 
         // N = 10, k = 5, p = 0.45
-        // Without Memoization:
+        //    Without Memoization:
         // Result: 0.23403270759257822
         // Recursive Call Count: 2467
 
         // With Memoization:
-        // Result: 0.23628711267947267
+        // Result: 0.23403270759257822
         // Recursive Memo Call Count: 101
-        
+                
         StdOut.println("Without Memoization:");
         StdOut.println("Result: " + binomial(10, 5, 0.45));
         StdOut.println("Recursive Call Count: " + count);
 
         StdOut.println("\nWith Memoization:");
-        StdOut.println("Result: " + binomialMemo(10, 5, 0.455));
+        StdOut.println("Result: " + binomialMemo(10, 5, 0.45));
         StdOut.println("Recursive Memo Call Count: " + countMemo);   
     }
 }
