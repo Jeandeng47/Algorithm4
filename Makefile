@@ -1,8 +1,8 @@
 # Variables
 # Modify CLASS, SRC_DIRC, DATA_DIR, and ARGS as needed
 JAR = algs4.jar
-SRC_DIR = Chapter_1-1
-CLASS = P_1_1_39
+SRC_DIR = Chapter_1-3
+CLASS = P_1_3_17
 DATA_DIR = algs4-data
 DEFAULT_INPUT = tinyGex2.txt
 ARGS ?= $(DEFAULT_INPUT) 2
