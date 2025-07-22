@@ -5,6 +5,7 @@ import java.util.Stack;
 
 // Lazy evaluation: only move elements when necessary.
 // Only move elements from inStack to outStack when outStack is empty.
+
 public class P_1_3_49 {
     
     public static class TwoStackQueue {

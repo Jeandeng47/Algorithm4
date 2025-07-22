@@ -1,8 +1,5 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Queue;
-
-import javax.imageio.IIOException;
 
 public class P_1_3_41 {
     public static class Queue<Item> implements Iterable<Item> {

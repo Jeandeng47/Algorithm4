@@ -1,5 +1,4 @@
 import java.io.File;
-import java.util.LinkedList;
 
 import edu.princeton.cs.algs4.Queue;
 
