@@ -2,12 +2,12 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class P_1_5_11 {
-    public static class _WeightedQuickFind {
+    public static class WeightedQuickFind {
         private int[] id;
         private int[] sz;
         private int count;
 
-        public _WeightedQuickFind(int N) {
+        public WeightedQuickFind(int N) {
             this.id = new int[N];
             this.sz = new int[N];
             this.count = N;
@@ -78,8 +78,8 @@ public class P_1_5_11 {
     public static void main(String[] args) {
         // Read number of sites
         int N = StdIn.readInt();
-        _WeightedQuickFind wqf = new _WeightedQuickFind(N); // use unionWeighted
-        _WeightedQuickFind qf = new _WeightedQuickFind(N); // use union
+        WeightedQuickFind wqf = new WeightedQuickFind(N); // use unionWeighted
+        WeightedQuickFind qf = new WeightedQuickFind(N); // use union
 
         // Process all pairs
         while (!StdIn.isEmpty()) {

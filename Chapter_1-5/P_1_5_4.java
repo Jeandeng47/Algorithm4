@@ -8,14 +8,14 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class P_1_5_4 {
-    public static class _WeightedQuickUnion {
+    public static class WeightedQuickUnion {
         private int[] id;   // parent link
         private int[] sz;   // size of component for roots
         private int count;  
 
         private int arrayAccess = 0;
 
-        public _WeightedQuickUnion(int N) {
+        public WeightedQuickUnion(int N) {
             this.id = new int[N];
             this.sz = new int[N];
             this.count = N;
@@ -130,7 +130,7 @@ public class P_1_5_4 {
 
     public static void main(String[] args) {
         int n = StdIn.readInt();
-        _WeightedQuickUnion wqu = new _WeightedQuickUnion(n);
+        WeightedQuickUnion wqu = new WeightedQuickUnion(n);
         while (!StdIn.isEmpty()) {
 
             int p = StdIn.readInt();

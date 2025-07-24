@@ -3,11 +3,11 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class P_1_5_8 {
-    public static class _QuickFind {
+    public static class QuickFind {
         private int[] id;       // id of component id
         private int count;      // number of components
 
-        public _QuickFind(int N) {
+        public QuickFind(int N) {
             // init component id array
             this.count = N;
             this.id = new int[N];
@@ -62,8 +62,8 @@ public class P_1_5_8 {
 
     public static void main(String[] args) {
         int n = StdIn.readInt();
-        _QuickFind correct = new _QuickFind(n);
-        _QuickFind wrong = new _QuickFind(n);
+        QuickFind correct = new QuickFind(n);
+        QuickFind wrong = new QuickFind(n);
 
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();

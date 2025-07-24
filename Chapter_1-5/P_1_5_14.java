@@ -1,31 +1,32 @@
+// Weighted Quick union by height
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Util.ArrayPrint;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class P_1_5_3 {
-    public static class WeightedQuickUnion {
+public class P_1_5_14 {
+
+    
+    public static class WeightedQuickUnionHeight {
         private int[] id;   // parent link
         private int[] sz;   // size of component for roots
+        private int[] h;  // height of component for roots
         private int count;  
 
-        private int arrayAccess = 0;
-
-        public WeightedQuickUnion(int N) {
+        public WeightedQuickUnionHeight(int N) {
             this.id = new int[N];
             this.sz = new int[N];
+            this.h = new int[N];
             this.count = N;
             
             for (int i = 0; i < N; i++) {
                 id[i] = i;
-            }
-
-            for (int i = 0; i < N; i++) {
                 sz[i] = 1;
+                h[i] = 0; // single node has height 0
             }
         }
 
@@ -41,50 +42,47 @@ public class P_1_5_3 {
             // find the root node
             while (p != id[p]) {
                 p = id[p];
-                // one compare, one write
-                arrayAccess += 2;
             }
             return p;
         }
 
+        // Union by height
+        public void unionHeight(int p, int q) {
+            int rootP = find(p);
+            int rootQ = find(q);
+            if (rootP == rootQ) return;
+
+            // link shorted tree under higher tree
+            if (h[rootP] < h[rootQ]) {
+                id[rootP] = rootQ;
+            } else if (h[rootP] > h[rootQ]) {
+                id[rootQ] = rootP;
+            } else {
+                // equal height: h = max(left, right) + 1
+                // inequal height: h = max(left, right)
+                id[rootQ] = rootP;
+                h[rootP]++;
+            }
+            count--;
+        }
+
+        // union by size
         public void union(int p, int q) {
             int i = find(p);
             int j = find(q);
             if (i == j) return;
 
             // always attach the small tree's root to the large tree
-
-            arrayAccess += 2; // compare sz[i] & sz[k]
             if (sz[i] < sz[j]) {
                 id[i] = j;
                 sz[j] += sz[i];
-                arrayAccess += 2; // write id[i], sz[j]
             } else {
                 id[j] = i;
                 sz[i] += sz[j];
-                arrayAccess += 2; // write id[j], sz[i]
             }
             count--;
         }
-
-        private int getArrayAccess() {
-            return this.arrayAccess;
-        }
-
-        private void resetArrayAccess() {
-            this.arrayAccess = 0;
-        }
-
-        private void printIdArray() {
-            StdOut.print("id array: ");
-            ArrayPrint.printArray(id); 
-        }
-
-        private void printSzArray() {
-            StdOut.print("sz array: ");
-            ArrayPrint.printArray(sz); 
-        }
-
+        
         public void drawForest() {
             Map<Integer, List<Integer>> trees = new HashMap<>();
             // Construct representation of forest:
@@ -128,158 +126,40 @@ public class P_1_5_3 {
         }
     }
 
+
     public static void main(String[] args) {
         int n = StdIn.readInt();
-        WeightedQuickUnion wqu = new WeightedQuickUnion(n);
-        while (!StdIn.isEmpty()) {
+        WeightedQuickUnionHeight wquHeight = new WeightedQuickUnionHeight(n);
+        WeightedQuickUnionHeight wqu = new WeightedQuickUnionHeight(n);
 
+        while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
 
-            // reset for every pair
-            wqu.resetArrayAccess();
-            
-            // operation
-            if (wqu.connected(p, q)) continue;
-            wqu.union(p, q);
-
-            // operation cost and array state
-            StdOut.printf("Connect %d and %d\n", p, q);
-            wqu.printIdArray();
-            wqu.printSzArray();
-            StdOut.printf("Accesses: %d\n", wqu.getArrayAccess());
-            
-            StdOut.println("Forest:");
-            wqu.drawForest();
-            StdOut.println();
-            
+            if (!wquHeight.connected(p, q)) {
+                wquHeight.unionHeight(p, q);
+            }
+            if (!wqu.connected(p, q)) {
+                wqu.union(p, q);
+            }
         }
+
+        StdOut.println("Tree of Weighted Quick-union: ");
+        wqu.drawForest();
+        StdOut.printf("Connected components: %d\n", wqu.count());
+        StdOut.println();
+
+        StdOut.println("Tree of Weighted Quick-union by height: ");
+        wquHeight.drawForest();
+        StdOut.printf("Connected components: %d\n", wquHeight.count());
+        StdOut.println();
     }
-
 }
-
 // input:
 // 10
 // 9 0 3 4 5 8 7 2 2 1 5 7 0 3 4 2
 
-
-// Connect 9 and 0
-// id array: 9 1 2 3 4 5 6 7 8 9
-// sz array: 1 1 1 1 1 1 1 1 1 2
-// Accesses: 4
-// Forest:
-// 1
-// 2
-// 3
-// 4
-// 5
-// 6
-// 7
-// 8
-// 9
-//     └── 0
-
-// Connect 3 and 4
-// id array: 9 1 2 3 3 5 6 7 8 9
-// sz array: 1 1 1 2 1 1 1 1 1 2
-// Accesses: 4
-// Forest:
-// 1
-// 2
-// 3
-//     └── 4
-// 5
-// 6
-// 7
-// 8
-// 9
-//     └── 0
-
-// Connect 5 and 8
-// id array: 9 1 2 3 3 5 6 7 5 9
-// sz array: 1 1 1 2 1 2 1 1 1 2
-// Accesses: 4
-// Forest:
-// 1
-// 2
-// 3
-//     └── 4
-// 5
-//     └── 8
-// 6
-// 7
-// 9
-//     └── 0
-
-// Connect 7 and 2
-// id array: 9 1 7 3 3 5 6 7 5 9
-// sz array: 1 1 1 2 1 2 1 2 1 2
-// Accesses: 4
-// Forest:
-// 1
-// 3
-//     └── 4
-// 5
-//     └── 8
-// 6
-// 7
-//     └── 2
-// 9
-//     └── 0
-
-// Connect 2 and 1
-// id array: 9 7 7 3 3 5 6 7 5 9
-// sz array: 1 1 1 2 1 2 1 3 1 2
-// Accesses: 8
-// Forest:
-// 3
-//     └── 4
-// 5
-//     └── 8
-// 6
-// 7
-//     ├── 1
-//     └── 2
-// 9
-//     └── 0
-
-// Connect 5 and 7
-// id array: 9 7 7 3 3 7 6 7 5 9
-// sz array: 1 1 1 2 1 2 1 5 1 2
-// Accesses: 4
-// Forest:
-// 3
-//     └── 4
-// 6
-// 7
-//     ├── 1
-//     ├── 2
-//     └── 5
-//         └── 8
-// 9
-//     └── 0
-
-// Connect 0 and 3
-// id array: 9 7 7 9 3 7 6 7 5 9
-// sz array: 1 1 1 2 1 2 1 5 1 4
-// Accesses: 8
-// Forest:
-// 6
-// 7
-//     ├── 1
-//     ├── 2
-//     └── 5
-//         └── 8
-// 9
-//     ├── 0
-//     └── 3
-//         └── 4
-
-// Connect 4 and 2
-// id array: 9 7 7 9 3 7 6 7 5 7
-// sz array: 1 1 1 2 1 2 1 9 1 4
-// Accesses: 16
-// Forest:
+// Tree of Weighted Quick-union: 
 // 6
 // 7
 //     ├── 1
@@ -290,3 +170,38 @@ public class P_1_5_3 {
 //         ├── 0
 //         └── 3
 //             └── 4
+// Connected components: 2
+
+// Tree of Weighted Quick-union by height: 
+// 6
+// 9
+//     ├── 0
+//     ├── 3
+//     │   └── 4
+//     └── 5
+//         ├── 7
+//         │   ├── 1
+//         │   └── 2
+//         └── 8
+// Connected components: 2
+
+// Worst input:
+// 5
+// 4 3 3 2 2 1 1 0
+
+// Tree of Weighted Quick-union: 
+// 4
+//     ├── 0
+//     ├── 1
+//     ├── 2
+//     └── 3
+// Connected components: 1
+
+// Tree of Weighted Quick-union by height: 
+// 4
+//     ├── 0
+//     ├── 1
+//     ├── 2
+//     └── 3
+// Connected components: 1
+

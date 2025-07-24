@@ -1,12 +1,12 @@
 import edu.princeton.cs.algs4.StdOut;
 
 public class P_1_5_10 {
-        public static class _WeightedQuickUnion {
+        public static class WeightedQuickUnion {
             private int[] id;
             private int[] sz;
             private int count;
             
-            public _WeightedQuickUnion(int N) {
+            public WeightedQuickUnion(int N) {
                 this.count = N;
                 this.id = new int[N];
                 this.sz = new int[N];
@@ -85,8 +85,8 @@ public class P_1_5_10 {
 
     public static void main(String[] args) {
         int n = 100;
-        _WeightedQuickUnion wquGood = new _WeightedQuickUnion(n);
-        _WeightedQuickUnion wquBad = new _WeightedQuickUnion(n);
+        WeightedQuickUnion wquGood = new WeightedQuickUnion(n);
+        WeightedQuickUnion wquBad = new WeightedQuickUnion(n);
 
         // worst case union: (0, 1), (2, 1), (3, 2), ..., (N-1, N-2)
         for (int i = 1; i < n; i++) {

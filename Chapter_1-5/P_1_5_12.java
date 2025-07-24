@@ -1,21 +1,21 @@
+// Quick union with path compression
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Util.ArrayPrint;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
-public class P_1_5_2 {
-    public static class QuickUnion {
+public class P_1_5_12 {
+    public static class QuickUnionPC {
         private int[] id;
         private int count;
 
-        public QuickUnion(int N) {
-            // init component id array
-            this.count = N;
+        public QuickUnionPC(int N) {
             this.id = new int[N];
+            this.count = N;
             for (int i = 0; i < N; i++) {
                 id[i] = i;
             }
@@ -30,11 +30,9 @@ public class P_1_5_2 {
         }
 
         public int find(int p) {
-            // find the root of p
             while (p != id[p]) {
                 p = id[p];
             }
-            // the root points to itself
             return p;
         }
 
@@ -49,9 +47,26 @@ public class P_1_5_2 {
             count--;
         }
 
-        private void printIdArray() {
-            StdOut.print("id array:  ");
-            ArrayPrint.printArray(id); 
+        public void unionPC(int p, int q) {
+            int rootP = find(p);
+            int rootQ = find(q);
+            if (rootP == rootQ) return;
+
+            // link p subtree to q
+            id[rootP] = rootQ;
+
+            // flatten the entire p->rootP to point at rootQ
+            // (for every node in p subtree, change its id[i] to q)
+            for (int i = p; i != rootQ; i = id[i]) {
+                id[i] = rootQ;
+            }
+
+            // flattern the entire q-> rootQ to point at root
+            for (int i = q; i != rootQ; i = id[i]) {
+                id[i] = rootQ;
+            }
+
+            count--;
         }
 
         public void drawForest() {
@@ -95,121 +110,85 @@ public class P_1_5_2 {
                 printTree(leaves.get(i), trees, leafPrefix, last);
             }
         }
-    }
 
+    }
     public static void main(String[] args) {
         int n = StdIn.readInt();
-        QuickUnion qu = new QuickUnion(n);
+        QuickUnionPC quPC = new QuickUnionPC(n);
+        QuickUnionPC qu = new QuickUnionPC(n);
 
-        while(!StdIn.isEmpty()) {
+        while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
 
-            if (qu.connected(p, q)) continue;
-            qu.union(p, q);
-
-            qu.printIdArray();
-            StdOut.println("Forest:");
-            qu.drawForest();
-            StdOut.println();
-
+            if (!quPC.connected(p, q)) {
+                quPC.unionPC(p, q);
+            }
+            if (!qu.connected(p, q)) {
+                qu.union(p, q);
+            }
         }
+
+        StdOut.println("Tree of Quick-union: ");
+        qu.drawForest();
+        StdOut.printf("Connected components: %d\n", qu.count());
+        StdOut.println();
+
+        StdOut.println("Tree of Quick-union with path compression: ");
+        quPC.drawForest();
+        StdOut.printf("Connected components: %d\n", quPC.count());
+        StdOut.println();
     }
-
 }
-
 
 // input:
 // 10
 // 9 0 3 4 5 8 7 2 2 1 5 7 0 3 4 2
-
-// id array:  0 1 2 3 4 5 6 7 8 0
-// Forest:
-// 0
-//     └── 9
-// 1
-// 2
-// 3
-// 4
-// 5
-// 6
-// 7
-// 8
-
-// id array:  0 1 2 4 4 5 6 7 8 0
-// Forest:
-// 0
-//     └── 9
-// 1
-// 2
-// 4
-//     └── 3
-// 5
-// 6
-// 7
-// 8
-
-// id array:  0 1 2 4 4 8 6 7 8 0
-// Forest:
-// 0
-//     └── 9
-// 1
-// 2
-// 4
-//     └── 3
-// 6
-// 7
-// 8
-//     └── 5
-
-// id array:  0 1 2 4 4 8 6 2 8 0
-// Forest:
-// 0
-//     └── 9
-// 1
-// 2
-//     └── 7
-// 4
-//     └── 3
-// 6
-// 8
-//     └── 5
-
-// id array:  0 1 1 4 4 8 6 2 8 0
-// Forest:
-// 0
-//     └── 9
-// 1
-//     └── 2
-//         └── 7
-// 4
-//     └── 3
-// 6
-// 8
-//     └── 5
-
-// id array:  0 1 1 4 4 8 6 2 1 0
-// Forest:
-// 0
-//     └── 9
+// Tree of Quick-union: 
 // 1
 //     ├── 2
 //     │   └── 7
+//     ├── 4
+//     │   ├── 0
+//     │   │   └── 9
+//     │   └── 3
 //     └── 8
 //         └── 5
-// 4
-//     └── 3
 // 6
+// Connected components: 2
 
-// id array:  4 1 1 4 4 8 6 2 1 0
-// Forest:
+// Tree of Quick-union with path compression: 
 // 1
 //     ├── 2
-//     │   └── 7
+//     ├── 4
+//     │   ├── 0
+//     │   │   └── 9
+//     │   └── 3
+//     ├── 5
+//     ├── 7
 //     └── 8
-//         └── 5
-// 4
-//     ├── 0
-//     │   └── 9
-//     └── 3
 // 6
+// Connected components: 2
+
+
+
+
+
+// Path of 4:
+// 5
+// 4 3 3 2 2 1 1 0
+// Tree of Quick-union: 
+// 0
+//     └── 1
+//         └── 2
+//             └── 3
+//                 └── 4
+// Connected components: 1
+
+// Tree of Quick-union with path compression: 
+// 0
+//     └── 1
+//         └── 2
+//             └── 3
+//                 └── 4
+// Connected components: 1
