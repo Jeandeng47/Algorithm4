@@ -39,7 +39,7 @@ public class P_2_2_8 {
         sort(a, mid + 1, hi);
         // speed up modification: skip merge
         // if a[mid] < a[mid + 1]
-        if (!less(a[mid], a[mid + 1])) return;
+        if (less(a[mid], a[mid + 1])) return;
         merge(a, lo, mid, hi); // merge is most expensive operation
     }
 
@@ -60,12 +60,12 @@ public class P_2_2_8 {
 //    N       C(N)
 // ----------------------
 //    1          0
-//    2          2
-//    4          7
-//    8         19
-//   16         47
-//   32        111
-//   64        255
-//  128        575
-//  256       1279
-//  512       2815
+//    2          1
+//    4          3
+//    8          7
+//   16         15
+//   32         31
+//   64         63
+//  128        127
+//  256        255
+//  512        511

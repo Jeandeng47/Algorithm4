@@ -33,7 +33,7 @@ public class _SelectionSort {
                 }
             }
             // always exchange a[i] with a[min]
-                exch(a, i, minIdx);
+            exch(a, i, minIdx);
         }
     }
 }
