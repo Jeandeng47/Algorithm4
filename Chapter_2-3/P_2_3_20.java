@@ -19,7 +19,7 @@ public class P_2_3_20 {
         }
     }
 
-    public static void quickSortRecursive(Comparable[] a) {
+    public static void quickSortNonRecursive(Comparable[] a) {
         int n = a.length;
         if (n <= 1) return;
         StdRandom.shuffle(a);
@@ -92,7 +92,7 @@ public class P_2_3_20 {
 
     public static void main(String[] args) {
         Integer[] a = {41, 12, 73, 24, 8, 55, 39, 68, 90, 15, 32, 60, 27};
-        quickSortRecursive(a);  
+        quickSortNonRecursive(a);  
 
         // print final array
         StdOut.print("FINAL: ");

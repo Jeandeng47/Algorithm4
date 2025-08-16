@@ -1,3 +1,9 @@
+// This class implements an ordered array-based max priority queue.
+// Insert: O(n)
+// Delete max: O(1)
+// Max: O(1)
+// Space: O(n)
+
 public class _OrderedArrayMaxPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int n;

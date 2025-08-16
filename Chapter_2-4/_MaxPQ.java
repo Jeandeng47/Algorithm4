@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class _MaxPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int n;
@@ -24,11 +26,18 @@ public class _MaxPQ<Key extends Comparable<Key>> {
         swim(n); // Restore heap order
     }
 
+    public Key max() {
+        if (isEmpty()) throw new NoSuchElementException("Priority queue empty");
+        return pq[1]; // return the max, at root
+    }
+
     public Key delMax() {
+        if (isEmpty()) throw new NoSuchElementException("Priority queue underflow");
         Key max = pq[1]; // The maximum is at the root
         exch(1, n--); // Move the last element to the root
-        pq[n + 1] = null; // Avoid loitering
         sink(1); // Restore heap order
+
+        pq[n + 1] = null; // Avoid loitering
 
         if (n > 0 && n == (pq.length - 1) / 4) {
             resize(pq.length / 2); 
@@ -49,7 +58,7 @@ public class _MaxPQ<Key extends Comparable<Key>> {
     // Heap order is broken if the parent is less than the child
     // we need to sink the parent down
     private void sink(int k) {
-        while (2*k <= n) {
+        while (2 * k <= n) {
             int j = 2 * k; // left child
             // pick the larger child
             if (j < n && less(j, j + 1)) {
@@ -59,7 +68,7 @@ public class _MaxPQ<Key extends Comparable<Key>> {
                 break; 
             }
             exch(k, j); // Swap parent and child
-            k = j; // Move down to child
+            k = j; // Move to child
         }
     }
 

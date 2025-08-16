@@ -1,4 +1,8 @@
-import java.security.Key;
+// This class implements an ordered linked-list-based max priority queue.
+// Insert: O(n)
+// Delete max: O(1)
+// Max: O(1)
+// Space: O(n)
 
 public class _OrderedLListMaxPQ<Key extends Comparable<Key>> {
     private Node first;

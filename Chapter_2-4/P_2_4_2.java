@@ -7,11 +7,11 @@ import edu.princeton.cs.algs4.StdOut;
 // To find maximum element in O(1) time using stack or queue,
 // we have to keep track of extra states with axiliary space.
 public class P_2_4_2 {
-    public static class MaxStack<E extends Comparable<E>> {
-        private Stack<E> data = new Stack<>();
-        private Stack<E> max = new Stack<>();
+    public static class MaxStack<Item extends Comparable<Item>> {
+        private Stack<Item> data = new Stack<>();
+        private Stack<Item> max = new Stack<>(); // Top of stack: current max
 
-        public void push(E item) {
+        public void push(Item item) {
             data.push(item);
             if (max.isEmpty() || item.compareTo(max.peek()) > 0) {
                 max.push(item);
@@ -20,12 +20,12 @@ public class P_2_4_2 {
             }
         }
 
-        public E pop() {
+        public Item pop() {
             max.pop();
             return data.pop();
         }
 
-        public E max() {
+        public Item max() {
             return max.peek();
         }
 
@@ -34,11 +34,11 @@ public class P_2_4_2 {
         }
     }
 
-    public static class MaxQueue<E extends Comparable<E>> {
-        private Deque<E> data = new LinkedList<>();
-        private Deque<E> candidates = new LinkedList<>();
+    public static class MaxQueue<Item extends Comparable<Item>> {
+        private Deque<Item> data = new LinkedList<>();
+        private Deque<Item> candidates = new LinkedList<>();
 
-        public void enqueue(E item) {
+        public void enqueue(Item item) {
             data.addLast(item);
             // evict all smaller elements from candidates 
             // so that the first element in candidates is always the max
@@ -48,11 +48,11 @@ public class P_2_4_2 {
             candidates.addLast(item);
         }
 
-        public E dequeue() {
+        public Item dequeue() {
             if (data.isEmpty()) {
                 throw new IllegalStateException("Queue is empty");
             }
-            E val = data.removeFirst();
+            Item val = data.removeFirst();
             // if the dequeued element is the maximum, remove it from candidates.
             if (val.equals(candidates.peekFirst())) {
                 candidates.removeFirst();
@@ -60,7 +60,7 @@ public class P_2_4_2 {
             return val;
         }
 
-        public E max() {
+        public Item max() {
             return candidates.peekFirst();
         }
 

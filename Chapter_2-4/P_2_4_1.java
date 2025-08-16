@@ -18,5 +18,8 @@ public class P_2_4_1 {
                 pq.insert(token.charAt(0));
             }
         }
+        StdOut.println();
     }
 }
+
+// R R P O T Y I I U Q E U

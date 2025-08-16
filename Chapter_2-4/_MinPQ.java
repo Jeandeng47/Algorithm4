@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class _MinPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int n;
@@ -25,6 +27,7 @@ public class _MinPQ<Key extends Comparable<Key>> {
     }
 
     public Key delMin() {
+        if (isEmpty()) throw new NoSuchElementException("Priority queue underflow");
         Key min = pq[1]; // The minimum is at the root
         exch(1, n--); // Move the last element to the root
         pq[n + 1] = null; // Avoid loitering

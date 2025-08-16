@@ -1,3 +1,9 @@
+// This class implements an ordered linked-list-based max priority queue.
+// Insert: O(1)
+// Delete max: O(n)
+// Max: O(n)
+// Space: O(n)
+
 public class _UnorderedLListMaxPQ<Key extends Comparable<Key>> {
     private Node first;
     private int n;
