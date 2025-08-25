@@ -1,11 +1,11 @@
 # Variables
 # Modify CLASS, SRC_DIRC, DATA_DIR, and ARGS as needed
 JAR = algs4.jar
-SRC_DIR = Chapter_2-4
-CLASS = P_2_4_20
+SRC_DIR = Chapter_3-1
+CLASS = P_3_1_20
 DATA_DIR = algs4-data
-DEFAULT_INPUT = tinyGex2.txt
-ARGS ?= $(DEFAULT_INPUT) 2
+DEFAULT_INPUT = tale.txt
+ARGS ?= $(DEFAULT_INPUT) 6
 JAVA_FILES = $(wildcard $(SRC_DIR)/*.java)
 TARGET_FILE = $(SRC_DIR)/$(CLASS).java
 TARGET_CLASS = $(SRC_DIR)/$(CLASS).class
@@ -36,7 +36,8 @@ compile: $(TARGET_FILE)
 # java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(DATA_DIR)/$(ARGS)
 
 run: compile
-	java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(ARGS)
+	java -cp .:$(JAR):$(SRC_DIR) $(CLASS) 
+	
 
 clean:
 	rm -f $(TARGET_CLASS)
