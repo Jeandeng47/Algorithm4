@@ -30,8 +30,8 @@ public class P_3_2_9 {
         for (int leftSz = 0; leftSz < N; leftSz++) {
             int rightSz = N - leftSz - 1;
             // for a left tree size of size i
+            // combine a right subtree of size N−1−i
             for (Node L : shapes(leftSz)) {
-                // combine a right subtree of size N−1−i
                 for (Node R : shapes(rightSz)) {
                     result.add(new Node(L, R));
                 }
@@ -49,7 +49,7 @@ public class P_3_2_9 {
         int num = 1, den = 1;
         for (int k = 1; k <= N; k++) {
             num = num * (N + k);
-            den = num * k;
+            den = den * k;
             // prevent overflow
             int gcd = gcd(num, den);
             num = num / gcd;
@@ -72,7 +72,7 @@ public class P_3_2_9 {
     private static void printBST(Node x, String prefix, boolean isLeft) {
         if (x == null) return;
         printBST(x.right, prefix + (isLeft ? "│   " : "    "), false);
-        System.out.println(prefix + (isLeft ?  "└── " : "┌── ") + "•");
+        StdOut.println(prefix + (isLeft ?  "└── " : "┌── ") + "•");
         printBST(x.left,  prefix + (isLeft ? "    " : "│   "), true);
     }
 
@@ -87,14 +87,13 @@ public class P_3_2_9 {
         int idx = 1;
         for (Node root : list) {
             StdOut.println("\n-- Shape #" + (idx++) + " --");
-            StdOut.println("Shape only:");
             printBST(root);
         }
     }
     
     public static void main(String[] args) {
 
-        for (int N = 2; N <= 4; N++) {
+        for (int N = 2; N <= 3; N++) {
             runN(N);
         }
     }
@@ -129,152 +128,45 @@ public class P_3_2_9 {
 // i = 2, L = Shape{2} = 2, R = Shape{0} = 1, 1 * 2 = 2
 // Total = 2 + 1 + 2 = 5
 
+
+
 // ==============================
 // N = 2
-// Unique shapes: 2 (Catalan C_2 = 0)
+// Unique shapes: 2 (Catalan C_2 = 2)
 
 // -- Shape #1 --
-// Shape only:
 //     ┌── •
 // ┌── •
 
 // -- Shape #2 --
-// Shape only:
 // ┌── •
 // │   └── •
 
 // ==============================
 // N = 3
-// Unique shapes: 5 (Catalan C_3 = 0)
+// Unique shapes: 5 (Catalan C_3 = 5)
 
 // -- Shape #1 --
-// Shape only:
 //         ┌── •
 //     ┌── •
 // ┌── •
 
 // -- Shape #2 --
-// Shape only:
 //     ┌── •
 //     │   └── •
 // ┌── •
 
 // -- Shape #3 --
-// Shape only:
 //     ┌── •
 // ┌── •
 // │   └── •
 
 // -- Shape #4 --
-// Shape only:
 // ┌── •
 // │   │   ┌── •
 // │   └── •
 
 // -- Shape #5 --
-// Shape only:
 // ┌── •
 // │   └── •
 // │       └── •
-
-// ==============================
-// N = 4
-// Unique shapes: 14 (Catalan C_4 = 0)
-
-// -- Shape #1 --
-// Shape only:
-//             ┌── •
-//         ┌── •
-//     ┌── •
-// ┌── •
-
-// -- Shape #2 --
-// Shape only:
-//         ┌── •
-//         │   └── •
-//     ┌── •
-// ┌── •
-
-// -- Shape #3 --
-// Shape only:
-//         ┌── •
-//     ┌── •
-//     │   └── •
-// ┌── •
-
-// -- Shape #4 --
-// Shape only:
-//     ┌── •
-//     │   │   ┌── •
-//     │   └── •
-// ┌── •
-
-// -- Shape #5 --
-// Shape only:
-//     ┌── •
-//     │   └── •
-//     │       └── •
-// ┌── •
-
-// -- Shape #6 --
-// Shape only:
-//         ┌── •
-//     ┌── •
-// ┌── •
-// │   └── •
-
-// -- Shape #7 --
-// Shape only:
-//     ┌── •
-//     │   └── •
-// ┌── •
-// │   └── •
-
-// -- Shape #8 --
-// Shape only:
-//     ┌── •
-// ┌── •
-// │   │   ┌── •
-// │   └── •
-
-// -- Shape #9 --
-// Shape only:
-//     ┌── •
-// ┌── •
-// │   └── •
-// │       └── •
-
-// -- Shape #10 --
-// Shape only:
-// ┌── •
-// │   │       ┌── •
-// │   │   ┌── •
-// │   └── •
-
-// -- Shape #11 --
-// Shape only:
-// ┌── •
-// │   │   ┌── •
-// │   │   │   └── •
-// │   └── •
-
-// -- Shape #12 --
-// Shape only:
-// ┌── •
-// │   │   ┌── •
-// │   └── •
-// │       └── •
-
-// -- Shape #13 --
-// Shape only:
-// ┌── •
-// │   └── •
-// │       │   ┌── •
-// │       └── •
-
-// -- Shape #14 --
-// Shape only:
-// ┌── •
-// │   └── •
-// │       └── •
-// │           └── •

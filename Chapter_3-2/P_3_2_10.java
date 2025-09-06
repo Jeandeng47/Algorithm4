@@ -233,7 +233,8 @@ public class P_3_2_10 {
    
 
     public static void main(String[] agrs) {
-        String[] str = {"S", "E", "A", "R", "C", "H", "E", "X", "A", "M", "P", "L", "E"};
+        String[] str = {"S", "E", "A", "R", "C", "H", "E", "X", 
+        "A", "M", "P", "L", "E"};
         BST<String, Integer> bst = new BST<>();
         for (int i = 0; i < str.length; i++) {
             bst.put(str[i], i);
