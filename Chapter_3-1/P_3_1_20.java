@@ -77,3 +77,15 @@ public class P_3_1_20 {
 // sorted array of size N. We need to prove: for all N >= 1
 // C(N) <= floor(log2N) + 1
 
+//     N  C(N)   log2+1    mono? bounded?
+//     1     1        1        T        T
+//     2     2        2        T        T
+//     4     3        3        T        T
+//     8     4        4        T        T
+//    16     5        5        T        T
+//    32     6        6        T        T
+//    64     7        7        T        T
+//   128     8        8        T        T
+
+// Monotonic C(N): verified
+// Bound C(N) <= floor(log2 N)+1: verified
