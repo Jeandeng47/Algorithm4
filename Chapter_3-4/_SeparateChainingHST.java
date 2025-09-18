@@ -75,7 +75,7 @@ public class _SeparateChainingHST<Key, Value> {
     // rehashing all of the keys!!!
     private void resize(int chains) {
         // new hash table
-        _SeparateChainingHST<Key, Value> temp = new _SeparateChainingHST<>(chains);;
+        _SeparateChainingHST<Key, Value> temp = new _SeparateChainingHST<>(chains);
         // move & rehash original keys
         for (int i = 0; i < m; i++) {
             for (Key k : st[i].keys()) {

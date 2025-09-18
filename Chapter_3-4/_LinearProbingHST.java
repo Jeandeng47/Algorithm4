@@ -57,7 +57,8 @@ public class _LinearProbingHST<Key, Value> {
         for (i = hash(key); keys[i] != null; i = (i + 1) % m) {
             if (keys[i].equals(key)) { 
                 vals[i] = val;  // update val
-                return; }
+                return; 
+            }
         }
         // put new KV pair
         keys[i] = key;
