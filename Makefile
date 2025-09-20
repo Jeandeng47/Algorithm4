@@ -1,8 +1,8 @@
 # Variables
 # Modify CLASS, SRC_DIRC, DATA_DIR, and ARGS as needed
 JAR = algs4.jar
-SRC_DIR = Chapter_3-3
-CLASS = P_3_3_100
+SRC_DIR = Chapter_3-4
+CLASS = P_3_4_24
 DATA_DIR = algs4-data
 DEFAULT_INPUT = tale.txt
 ARGS ?= $(DEFAULT_INPUT) 6

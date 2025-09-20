@@ -2,7 +2,7 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class P_3_4_15 {
 
-    public static class LPT <Key>{
+    public static class LPT<Key>{
         private Key[] keys;
         private int N;
         private int M;
