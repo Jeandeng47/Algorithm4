@@ -1,9 +1,10 @@
+import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 public class P_4_1_2 {
     public static void main(String[] args) {
-        _Graph G = new _Graph(new In("algs4-data/tinyGex2.txt"));
+        Graph G = new Graph(new In("algs4-data/tinyGex2.txt"));
         StdOut.println(G);
     }
 }

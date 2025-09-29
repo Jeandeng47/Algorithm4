@@ -1,8 +1,57 @@
+import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.StdOut;
 
 public class P_4_1_5 {
+
+        public static class Graph {
+        private int V;
+        private int E;
+        private Bag<Integer>[] adj;
+
+        public Graph(int V) {
+            this.V = V;
+            this.E = 0;
+            adj = (Bag<Integer>[]) new Bag[V];
+            for (int i = 0; i < V; i++) {
+                adj[i] = new Bag<>();
+            }
+        }
+
+        public int V() { return V; }
+        public int E() { return E; }
+        public Iterable<Integer> adj(int v) {
+            return adj[v];
+        }
+
+        public void addEdge(int v, int w) {
+            checkSelfLoop(v, w);
+            checkParallelEdge(v, w);
+            adj[v].add(w);
+            adj[w].add(v);
+            E++;
+        }
+
+        private void checkSelfLoop(int v, int w) {
+            for (int n : adj[v]) {
+                if (v == w) {
+                    throw new IllegalArgumentException
+                    ("Self-loops found at " + v);
+                }
+            }
+        }
+
+        private void checkParallelEdge(int v, int w) {
+            for (int n : adj[v]) {
+                if (n == w) {
+                    throw new IllegalArgumentException
+                    ("Parallel edge found at " + v  + " and " + w);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        _Graph g = new _Graph(5);
+        Graph g = new Graph(5);
 
         g.addEdge(0, 1); // Valid
         g.addEdge(1, 2); // Valid
@@ -19,7 +68,6 @@ public class P_4_1_5 {
             StdOut.println("Error: " + e.getMessage());
         }
     
-        StdOut.println(g);
     }
 }
 

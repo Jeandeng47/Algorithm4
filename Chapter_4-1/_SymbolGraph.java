@@ -1,6 +1,5 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.ST;
-import edu.princeton.cs.algs4.StdOut;
 
 public class _SymbolGraph {
 
@@ -10,7 +9,7 @@ public class _SymbolGraph {
 
     public _SymbolGraph(String stream, String sp) {
         // First pass: build the index by reading strings
-        // to associate each distrinct string with an index
+        // to associate each distinct string with an index
         this.st = new ST<>();
         
         In in = new In(stream);
@@ -37,7 +36,7 @@ public class _SymbolGraph {
         in = new In(stream);
         while (in.hasNextLine()) {
             String[] a = in.readLine().split(sp);
-            // vertex: index corresponding to the key
+            // v: index corresponding to the key
             int v = st.get(a[0]); 
             for (int i = 1; i < a.length; i++) {
                 G.addEdge(v, st.get(a[i]));
