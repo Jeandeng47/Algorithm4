@@ -1,5 +1,3 @@
-
-
 // DFS:
 // Start from the source vertex, perform the steps until all vertices visited:
 // 1. Mark the vertex as visited

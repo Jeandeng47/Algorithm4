@@ -2,9 +2,9 @@
 # Modify CLASS, SRC_DIRC, DATA_DIR, and ARGS as needed
 JAR = algs4.jar
 SRC_DIR = Chapter_4-1
-CLASS = P_4_1_5
+CLASS = P_4_1_20
 DATA_DIR = algs4-data
-DEFAULT_INPUT = tale.txt
+DEFAULT_INPUT = tinyG.txt
 ARGS ?= $(DEFAULT_INPUT) 6
 JAVA_FILES = $(wildcard $(SRC_DIR)/*.java)
 TARGET_FILE = $(SRC_DIR)/$(CLASS).java
@@ -33,10 +33,10 @@ compile: $(TARGET_FILE)
 # java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(ARGS)
 
 # run with data file and arguments:
-# java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(DATA_DIR)/$(ARGS)
+# java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(ARGS)
 
 run: compile
-	java -cp .:$(JAR):$(SRC_DIR) $(CLASS) 
+	java -cp .:$(JAR):$(SRC_DIR) $(CLASS) $(ARGS)
 	
 
 clean:

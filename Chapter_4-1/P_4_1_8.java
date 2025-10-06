@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -13,7 +14,7 @@ public class P_4_1_8 {
         private boolean[] marked;
         private int count;
 
-        public Search(_Graph G, int s) {
+        public Search(Graph G, int s) {
             validateVertex(G, s);
             this.marked = new boolean[G.V()];
             UF uf = new UF(G.V());
@@ -45,7 +46,7 @@ public class P_4_1_8 {
             return count;
         }
 
-        private void validateVertex(_Graph G, int v) {
+        private void validateVertex(Graph G, int v) {
             if (v < 0 || v >= G.V()) {
                 throw new IllegalArgumentException("Vertex " + v + " is out of bounds");
             }
@@ -105,7 +106,7 @@ public class P_4_1_8 {
     }
 
     public static void main(String[] args) {
-        _Graph G = new _Graph(new In(args[0]));
+        Graph G = new Graph(new In(args[0]));
         int s = Integer.parseInt(args[1]);
         Search search = new Search(G, s);
 

@@ -20,10 +20,9 @@ public class P_4_1_10 {
             marked[v] = true;
             boolean isRemovable = true;
 
-            // In a DFS tree, we start search in the root
-            // other vertices are reached by their parents
-            // For leaf node, all its neighbours are visited
-            // If we remove the leaf node, the graph is still connected
+            // In a DFS tree, we start search in the root other vertices are reached by their parents
+            // For leaf node, all its neighbours are visited. If we remove the leaf node, the graph 
+            // is still connected
             for (int w: G.adj(v)) {
                 if (!marked[w]) {
                     edgeTo[w] = v;
